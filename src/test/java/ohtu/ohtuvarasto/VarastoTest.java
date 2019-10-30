@@ -121,7 +121,7 @@ public class VarastoTest {
     @Test
     public void varastostaVoidaanOttaaEnintaanSaldo() {
         varasto.lisaaVarastoon(10);
-        assertTrue(10 == varasto.otaVarastosta(100));
+        assertTrue(9 == varasto.otaVarastosta(100));
     }
 
 }
