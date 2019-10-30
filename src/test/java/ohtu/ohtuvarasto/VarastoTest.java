@@ -64,5 +64,64 @@ public class VarastoTest {
         // varastossa pitäisi olla tilaa 10 - 8 + 2 eli 4
         assertEquals(4, varasto.paljonkoMahtuu(), vertailuTarkkuus);
     }
+    
+    @Test
+    public void toStringToimiiOikein() {
+        assertEquals(varasto.toString(), "saldo = 0.0, vielä tilaa 10.0");
+    }
+    
+    @Test
+    public void negatiivinenTilavuusMuutetaanNollaksi() {
+        varasto = new Varasto(-1);
+        assertTrue(varasto.getTilavuus() == 0.0);
+    }
+    
+    @Test
+    public void eiVoiLisataNegatiivistaMaaraa() {
+        double ensinMaara = varasto.getSaldo();
+        varasto.lisaaVarastoon(-10);
+        assertTrue(ensinMaara == varasto.getSaldo());
+    }
+    
+    @Test
+    public void lisatessaEiYlitetaTilavuutta() {
+        varasto.lisaaVarastoon(varasto.getTilavuus() + 10);
+        assertTrue(varasto.getSaldo() == varasto.getTilavuus());
+    }
+    
+    @Test
+    public void konstruktoriKahdellaMuuttujallaToimii() {
+        varasto = new Varasto(20, 10);
+        assertTrue(varasto.getSaldo() == 10 && varasto.getTilavuus() == 20);
+    }
+    
+    @Test
+    public void konstruktoriKahdellaMuuttujallaAsettaaNegatiivisenTilavuudenNollaksi() {
+        varasto = new Varasto(-1, 10);
+        assertTrue(varasto.getTilavuus() == 0);
+    }
+    
+    @Test
+    public void konstruktoriKahdellaMuuttujallaAsettaaNegatiivisenSaldonNollaksi() {
+        varasto = new Varasto(10, -1);
+        assertTrue(varasto.getSaldo() == 0);
+    }
+    
+    @Test
+    public void konstuktoriKahdellaMuuttujallaAsettaaSaldoksiKorkeintaanTilavuuden() {
+        varasto = new Varasto(10, 20);
+        assertTrue(varasto.getSaldo() == 10);
+    }
+    
+    @Test
+    public void varastostaEiVoiOttaaNegatiivistaMaaraa() {
+        assertTrue(varasto.otaVarastosta(-10) == 0);
+    }
+    
+    @Test
+    public void varastostaVoidaanOttaaEnintaanSaldo() {
+        varasto.lisaaVarastoon(10);
+        assertTrue(10 == varasto.otaVarastosta(100));
+    }
 
 }
