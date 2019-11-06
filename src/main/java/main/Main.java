@@ -6,6 +6,23 @@ public class Main {
 
     public static void main(String[] args) {
 
+	for( int i=0; i<1; i++ ) {
+  for( int j=0; i<j; j++ ) {
+    System.out.println("virhe");
+  } 
+}
+
+	if (1 == 1) {
+	    if (2 == 2) {
+		if (3 == 3);
+		int x = 3;
+	    }
+        }
+
+	if (true)
+    {
+        if (true) {}}
+
         Varasto mehua = new Varasto(100.0);
         Varasto olutta = new Varasto(100.0, 20.2);
 
